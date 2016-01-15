@@ -62,11 +62,6 @@ public class SimpleTest {
 	
 	@Test
     public void shouldShowRightAnswerPopupWhenAsnwerCorrect(){
-
-        driver.get(URL);
-        String title = driver.getTitle();
-        assertEquals("Rule Financial Registration Form", title);
-
         driver.get(URL);
         String title = driver.getTitle();
 		String email = genEmail(10);
@@ -86,6 +81,21 @@ public class SimpleTest {
 		driver.findElement(By.xpath(".//*[@id='gwt-uid-26']")).click();
 		driver.findElement(By.xpath("html/body/div[2]/div[2]/div/div/div/table/tbody/tr/td[1]/button")).click();
 		assertTrue(driver.findElement(By.xpath("html/body/div[5]/div/div")).isDisplayed());	
+
+    }
+	
+	@Test
+    public void shouldShowRightAnswerPopupWhenAsnwerCorrect(){
+
+        driver.get(URL);
+        String title = driver.getTitle();
+		String email = genEmail(10);
+        assertEquals("Rule Financial Registration Form", title);
+
+		driver.findElement(By.name("email")).sendKeys(email);
+		driver.findElement(By.name("repeatEmail")).sendKeys(email+"bla");
+		
+		assertTrue(driver.findElement(By.xpath("html/body/div[2]/div[2]/div/div/div/div[5]/div/div")).isDisplayed())
 
     }
 	
